@@ -42,8 +42,8 @@ def weibo_search():
             try:
                 page_buf = cop.open_source()
                 posts = ct.getXpath('//div[@class="card-wrap"]',page_buf)
-                proxy = ct.get_new_1min_proxy()
-                proxies = {'http': 'http://' + proxy, 'https': 'http://' + proxy}
+                # proxy = ct.get_new_1min_proxy()
+                # proxies = {'http': 'http://' + proxy, 'https': 'http://' + proxy}
                 for post in posts:
                     texts = ct.getXpath('//p[@node-type="feed_list_content_full"]//text()',post)
                     if not texts:
@@ -65,24 +65,24 @@ def weibo_search():
                     if ct.getRegex('评论 (\d+.*)',comments_button):
                         try:
 
-                            try:
-                                comments_page = ct.get('https://m.weibo.cn/api/comments/show?id='+mid,proxies=proxies) # 获取评论会封ip，另外有很多评论不可见(敏感词，用户设置) 虽然评论数不是空
-                                json_data = json.loads(comments_page)
-                                comments = json_data['data']['data']
-                                for comment in comments:
-                                    comment_text = comment['text']
-                                    get_comments.append(comment_text)
-                            except:
-                                time.sleep(2)
-                                proxy = ct.get_new_1min_proxy()
+                            # try:
+                            #     comments_page = ct.get('https://m.weibo.cn/api/comments/show?id='+mid,proxies=proxies) # 获取评论会封ip，另外有很多评论不可见(敏感词，用户设置) 虽然评论数不是空
+                            #     json_data = json.loads(comments_page)
+                            #     comments = json_data['data']['data']
+                            #     for comment in comments:
+                            #         comment_text = comment['text']
+                            #         get_comments.append(comment_text)
+                            # except:
+                            #     time.sleep(2)
+                            #     proxy = ct.get_new_1min_proxy()
 
                             # time.sleep(2)
-                            # comments_page = ct.get('https://m.weibo.cn/api/comments/show?id=' + mid)
-                            # json_data = json.loads(comments_page)
-                            # comments = json_data['data']['data']
-                            # for comment in comments:
-                            #     comment_text = comment['text']
-                            #     get_comments.append(comment_text)
+                            comments_page = ct.get('https://m.weibo.cn/api/comments/show?id=' + mid)
+                            json_data = json.loads(comments_page)
+                            comments = json_data['data']['data']
+                            for comment in comments:
+                                comment_text = comment['text']
+                                get_comments.append(comment_text)
                         except Exception as e:
                             print(e,mid)
 
