@@ -10,3 +10,8 @@ weibo/main.py  # 按日拆分高级搜索条件采集
 chromedriver.exe 路径。 你需要下载你自己的chrome浏览器对应版本的驱动参考 https://blog.csdn.net/BinGISer/article/details/88559532  
 抓取评论最好需要代理，这个注释掉了  
 默认使用用户默认浏览器文件夹，因此运行前需要用chrome浏览器登录下微博，然后运行前需要关闭所有chrome浏览器  
+
+windows平台的关键词搜索封装成了有页面的工具，下载地址
+
+链接：https://pan.baidu.com/s/1jwr25SydQxUoYV0CN7aYfg 
+提取码：ynxs
